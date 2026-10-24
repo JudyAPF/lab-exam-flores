@@ -12,6 +12,7 @@ The student list is also available to outside apps through a token-protected API
 - PHP 8.2+
 - Composer
 - MySQL (e.g., XAMPP)
+- Node.js 18+ and npm (only needed to rebuild the styles)
 
 ## How to run the project
 1. Clone the repository and open the folder:
@@ -45,6 +46,26 @@ The student list is also available to outside apps through a token-protected API
    ```
    php artisan serve
    ```
+7. (Optional) Rebuild the CSS. The compiled Tailwind files are already in `public/build`,
+   so this is only needed after changing the styles:
+   ```
+   npm install
+   npm run build
+   ```
+   While editing styles, run `npm run dev` in a second terminal to see changes right away.
+
+## Styling
+The pages are styled with Tailwind CSS v4 (through Vite). The color palette is defined in
+`resources/css/app.css`, so each color can be used as a Tailwind class (for example `bg-lucky-point`):
+
+| Color       | Hex       | Used for                                  |
+|-------------|-----------|-------------------------------------------|
+| Lucky Point | `#121561` | Navbar, headings, text, primary buttons   |
+| Ship Cove   | `#6b7abc` | Avatars, labels, borders, hover states    |
+| Cornflower  | `#92bfe7` | Accents, badges, focus rings              |
+| Mystic      | `#edf0f5` | Page background, dividers                 |
+
+Red is used only for validation errors and Delete buttons.
 
 ## Test accounts
 | Name            | Email            | Password    |
