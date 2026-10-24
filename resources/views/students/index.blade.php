@@ -35,14 +35,19 @@
                         <td>
                             <div class="actions">
                                 <a href="{{ route('students.show', $student) }}" class="btn btn-secondary btn-sm">View</a>
-                                <a href="{{ route('students.edit', $student) }}" class="btn btn-outline btn-sm">Edit</a>
 
-                                <form method="POST" action="{{ route('students.destroy', $student) }}"
-                                      onsubmit="return confirm('Delete this student?')">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-                                </form>
+                                @can('update', $student)
+                                    <a href="{{ route('students.edit', $student) }}" class="btn btn-outline btn-sm">Edit</a>
+                                @endcan
+
+                                @can('delete', $student)
+                                    <form method="POST" action="{{ route('students.destroy', $student) }}"
+                                        onsubmit="return confirm('Delete this student?')">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                    </form>
+                                @endcan
                             </div>
                         </td>
                     </tr>

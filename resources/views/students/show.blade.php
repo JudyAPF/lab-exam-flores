@@ -23,14 +23,19 @@
 
         <div class="form-actions">
             <a href="{{ route('students.index') }}" class="btn btn-outline">&larr; Back to list</a>
-            <a href="{{ route('students.edit', $student) }}" class="btn btn-secondary">Edit</a>
 
-            <form method="POST" action="{{ route('students.destroy', $student) }}"
-                  onsubmit="return confirm('Delete this student?')">
-                @csrf
-                @method('DELETE')
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </form>
+            @can('update', $student)
+                <a href="{{ route('students.edit', $student) }}" class="btn btn-secondary">Edit</a>
+            @endcan
+
+            @can('delete', $student)
+                <form method="POST" action="{{ route('students.destroy', $student) }}"
+                    onsubmit="return confirm('Delete this student?')">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            @endcan
         </div>
     </div>
 @endsection
