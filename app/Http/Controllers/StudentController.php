@@ -6,6 +6,7 @@ use App\Models\Course;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
@@ -39,6 +40,8 @@ class StudentController extends Controller
             'email' => ['required', 'email', 'max:255', 'unique:students,email'],
             'course_id' => ['required', 'exists:courses,id'],
         ]);
+
+        $data['user_id'] = Auth::id();
 
         Student::create($data);
 
