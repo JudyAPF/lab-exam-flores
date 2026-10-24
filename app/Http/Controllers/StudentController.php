@@ -64,16 +64,21 @@ class StudentController extends Controller
      */
     public function edit(Student $student)
     {
+        $this->authorize('update', $student);
+
         $courses = Course::orderBy('name')->get();
 
         return view('students.edit', compact('student', 'courses'));
     }
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Student $student)
     {
+        $this->authorize('update', $student);
+
         $data = $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('students', 'email')->ignore($student->id)],
@@ -91,6 +96,8 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
+        $this->authorize('delete', $student);
+
         $student->delete();
 
         return redirect()->route('students.index')
