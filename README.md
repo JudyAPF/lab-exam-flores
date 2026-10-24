@@ -16,7 +16,7 @@ The student list is also available to outside apps through a token-protected API
 ## How to run the project
 1. Clone the repository and open the folder:
    ```
-   git clone https://github.com/YOUR-USERNAME/lab-exam-flores.git
+   git clone https://github.com/JudyAPF/lab-exam-flores.git
    cd lab-exam-flores
    ```
 2. Install the PHP packages:
